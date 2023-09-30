@@ -1,4 +1,4 @@
-// сервис  который будет получать данные из таблицы zagotovka_2 через API http://127.0.0.1:3000/zagotovka_2
+// сервис  который будет получать данные из таблицы zagotovka_2 через API https://postgrest.zencha-ten.duckdns.org/zagotovka_2
 
 import 'dart:convert';
 import 'dart:io';
@@ -13,7 +13,7 @@ import '../models/zagotovka_2_model.dart';
 class Zagotovka2Api {
   Future<List<Zagotovka2Model>?> getZagotovka2Model() async {
     var clientZagotovka2 = http.Client();
-    var urlZagotovka2 = Uri.parse('http://127.0.0.1:3000/zagotovka_2');
+    var urlZagotovka2 = Uri.parse('https://postgrest.zencha-ten.duckdns.org/zagotovka_2');
     var responseZagotovka2Model = await clientZagotovka2.get(urlZagotovka2);
 
     if (responseZagotovka2Model.statusCode == 200) {
@@ -32,7 +32,7 @@ class Zagotovka2Api {
 class DiamTruby1Api {
   Future<List<DiamTruby1>?> getDiamTruby1() async {
     var clientDiamTruby1 = http.Client();
-    var urlDiamTruby1 = Uri.parse('http://127.0.0.1:3000/diam_truby_1');
+    var urlDiamTruby1 = Uri.parse('https://postgrest.zencha-ten.duckdns.org/diam_truby_1');
     var responseDiamTruby1 = await clientDiamTruby1.get(urlDiamTruby1);
 
     if (responseDiamTruby1.statusCode == 200) {
@@ -51,7 +51,7 @@ class DiamTruby1Api {
 class KReduc3Api {
   Future<List<KReduc3>?> getKReduc3() async {
     var clientKReduc3 = http.Client();
-    var urlKReduc3 = Uri.parse('http://127.0.0.1:3000/k_reduc_3');
+    var urlKReduc3 = Uri.parse('https://postgrest.zencha-ten.duckdns.org/k_reduc_3');
     var responseKReduc3 = await clientKReduc3.get(urlKReduc3);
 
     if (responseKReduc3.statusCode == 200) {
@@ -71,7 +71,7 @@ class KSterzhenZadelka5Api {
   Future<List<KSterzhenZadelka5>?> getKSterzhenZadelka5() async {
     var clientKSterzhenZadelka5 = http.Client();
     var urlKSterzhenZadelka5 =
-        Uri.parse('http://127.0.0.1:3000/k_sterzhen_zadelka_5');
+        Uri.parse('https://postgrest.zencha-ten.duckdns.org/k_sterzhen_zadelka_5');
     var responseKSterzhenZadelka5 =
         await clientKSterzhenZadelka5.get(urlKSterzhenZadelka5);
 
@@ -91,7 +91,7 @@ class KSterzhenZadelka5Api {
 class BaseListGetApi {
   Future<List<BaseListModel>?> getBaseListModel() async {
     var clientGetBaseList = http.Client();
-    var urlGetBaseList = Uri.parse('http://127.0.0.1:3000/base_list');
+    var urlGetBaseList = Uri.parse('https://postgrest.zencha-ten.duckdns.org/base_list');
     var responseGetBaseListModel = await clientGetBaseList.get(urlGetBaseList);
 
     if (responseGetBaseListModel.statusCode == 200) {
@@ -112,7 +112,7 @@ class BaseListApi {
   var clientBaseList = http.Client();
   Future<List<BaseListModel>?> postBaseListModel(
       BaseListModel baseListModel) async {
-    var urlBaseList = Uri.parse('http://127.0.0.1:3000/base_list');
+    var urlBaseList = Uri.parse('https://postgrest.zencha-ten.duckdns.org/base_list');
     try {
       var responseBaseListModel = await clientBaseList.post(
         urlBaseList,
