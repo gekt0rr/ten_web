@@ -1,0 +1,99 @@
+<h2>Заготовка</h2>
+<div>
+  <label for="material">Материал оболочки</label>
+  <input type="text" id="material" name="material" autocomplete="off">
+</div>
+<div>
+  <label for="diametr_zagotovki">Диаметр заготовки</label>
+  <input type="text" id="diametr_zagotovki" name="diametr_zagotovki">
+</div>
+<div>
+  <label for="tolshina_stenki">Толщина стенки</label>
+  <input type="text" id="tolshina_stenki" name="tolshina_stenki">
+</div>
+
+<script>
+// Заготовка
+fetch('http://127.0.0.1:3000/zagotovka_2')
+.then(response => response.json())
+.then(data => {
+    const materials = new Set(data.map(item => item.material));
+    const diameters = new Set(data.map(item => item.diametr_zagotovki));
+    const thicknesses = new Set(data.map(item => item.tolshina_stenki));
+
+    console.log(thicknesses);
+
+    const materialInput = document.querySelector('#material');
+    const datalistmaterial = document.createElement('datalist');
+    datalistmaterial.id = 'materialList';
+    materialInput.setAttribute('list', 'materialList');
+
+    for (const material of materials) {
+        const option = document.createElement('option');
+        option.value = material;
+        option.text = material;
+        datalistmaterial.appendChild(option);
+    }
+
+    materialInput.parentNode.insertBefore(datalistmaterial, materialInput.nextSibling);
+
+    const diameterInput = document.querySelector('#diametr_zagotovki');
+    const datalistdiametrzagotovki = document.createElement('datalist');
+    datalistdiametrzagotovki.id = 'diameterList';
+    diameterInput.setAttribute('list', 'diameterList');
+
+    for (const diameter of diameters) {
+    const option = document.createElement('option');
+    option.value = diameter;
+    option.text = diameter;
+    datalistdiametrzagotovki.appendChild(option);
+    }
+
+    diameterInput.parentNode.insertBefore(datalistdiametrzagotovki, diameterInput.nextSibling);
+
+
+    const tolshina_stenkiInput = document.querySelector('#tolshina_stenki');
+    const datalisttolshina_stenki = document.createElement('datalist');
+    datalisttolshina_stenki.id = 'tolshina_stenkiList';
+    tolshina_stenkiInput.setAttribute('list', 'tolshina_stenkiList');
+
+    for (const thickness of thicknesses) {
+    const option = document.createElement('option');
+    option.value = thickness;
+    option.text = thickness;
+    datalisttolshina_stenki.appendChild(option);
+    }
+
+    tolshina_stenkiInput.parentNode.insertBefore(datalisttolshina_stenki, tolshina_stenkiInput.nextSibling);
+
+    // Обработчики событий
+    materialInput.addEventListener('input', filterData);
+    diameterInput.addEventListener('input', filterData);
+    tolshina_stenkiInput.addEventListener('input', filterData);
+
+})
+.catch(error => console.error(error));
+
+// Функция фильтрации данных
+function filterData() {
+    const material = materialInput.value;
+    const diameter = diameterInput.value;
+    const thickness = tolshina_stenkiInput.value;
+
+    const filteredData = data.filter(item => {
+        if (material && item.material !== material) {
+            return false;
+        }
+        if (diameter && item.diametr_zagotovki !== diameter) {
+            return false;
+        }
+        if (thickness && item.tolshina_stenki !== thickness) {
+            return false;
+        }
+        return true;
+    });
+
+    // Выполнить действия с отфильтрованными данными
+    console.log(filteredData);
+}
+</script>

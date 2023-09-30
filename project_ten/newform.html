@@ -1,0 +1,288 @@
+<html>
+    
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
+    <style>
+
+    </style>
+
+</head>    
+
+        <body>
+            
+            <form  id="base_proizvodstvo">
+                <h1>База</h1>
+                    <h2>Пункты не подкреплены таблицами</h2>
+                        <!-- // пока пишем сами -->
+                        <div>
+                            <label for="zakaz_n">Заказ№</label>
+                            <input type="text" id="zakaz_n" name="zakaz_n" placeholder="хз откуда брать">
+                        </div>
+                        <!-- // пока пишем сами -->
+                        <div>
+                            <label for="zakazchik">Заказчик</label>
+                            <input type="text" id="zakazchik" name="zakazchik" placeholder="хз откуда брать">
+                        </div>
+                        <!-- // пишем сами -->
+                        <div>
+                            <label for="kolichestvo">Кол-во</label>
+                            <input type="text" id="kolichestvo" name="kolichestvo" placeholder="хз откуда брать">
+                        </div>
+                        <!-- // bit или prom? откуда это берется и поменяется ли потом? -->
+                        <div>
+                            <label for="naznachenie_ten">Назначение ТЭН</label>
+                            <input type="text" id="naznachenie_ten" name="naznachenie_ten" placeholder="хз откуда брать">
+                        </div>
+                        <!-- // пишем сами -->
+                        <div>
+                            <label for="dlina_ten_sm">Длина Тэн (см)</label>
+                            <input type="text" id="dlina_ten_sm" name="dlina_ten_sm" placeholder="хз откуда брать">
+                        </div>
+                    <h2>Заделка</h2>
+                        <!-- // берется из таблицы k_sterzhen_zadelka_5 колонка bukvennoe_oboznachenie -->
+                        <div>
+                            <label for="bukvennoe_oboznachenie">Заделка</label>
+                            <input type="text" id="bukvennoe_oboznachenie" name="bukvennoe_oboznachenie">
+                        </div>
+                    <h2>Заготовка</h2>
+                        <!-- // берется из таблицы zagotovka_2  -->
+                        <div>
+                            <!-- // колонка material -->
+                            <label for="material">Материал оболочки</label>
+                            <input type="text" id="material" name="material" autocomplete="off">
+                        </div>
+                        <div>
+                            <!-- / колонка diametr_zagotovki -->
+                            <label for="diametr_zagotovki">Диаметр заготовки</label>
+                            <input type="text" id="diametr_zagotovki" name="diametr_zagotovki">
+                        </div>
+                        <div>
+                            <!-- / колонка tolshina_stenki -->
+                            <label for="tolshina_stenki">Толщина стенки</label>
+                            <input type="text" id="tolshina_stenki" name="tolshina_stenki">
+                        </div>
+                    <h2>Ø ТЭН (мм)</h2>
+                        <!-- // берем из таблицы diam_truby_1 -->
+                        <div>
+                            <!-- // shell_diameter  -->
+                            <label for="shell_diameter">диаметр оболочки</label>
+                            <input type="text" id="shell_diameter" name="shell_diameter">
+                        </div>
+                        <div>
+                            <!-- / колонка diameter_of_the_ten_billet -->
+                            <label for="diameter_of_the_ten_billet">диаметр заготовки</label>
+                            <input type="text" id="diameter_of_the_ten_billet" name="diameter_of_the_ten_billet">
+                        </div>
+                    <h2>Мощность</h2>
+                        <!-- // берется непойми откуда -->
+                        <div>
+                            <label for="moshnost_kvt">Мощность (кВт)</label>
+                            <input type="text" id="moshnost_kvt" name="moshnost_kvt" placeholder="хз откуда брать">
+                        </div>
+                        <!-- // берется непойми откуда -->
+                        <div>
+                            <label for="rab_sreda">Раб. среда</label>
+                            <input type="text" id="rab_sreda" name="rab_sreda" placeholder="хз откуда брать">
+                        </div>
+                        <!-- // пишем сами -->
+                        <div>
+                            <label for="napryazhenie_v">Напряжение (В)</label>
+                            <input type="text" id="napryazhenie_v" name="napryazhenie_v" placeholder="хз откуда брать">
+                        </div>
+                        <!-- // пишем сами -->
+                        <div>
+                            <label for="dlina_zagotovki_mm">Длина заготовки (мм)</label>
+                            <input type="text" id="dlina_zagotovki_mm" name="dlina_zagotovki_mm" placeholder="хз откуда брать">
+                        </div>
+                        <!-- // пишем сами -->
+                        <div>
+                            <label for="dlina_posle_reducirov_mm">Длина после редуциров (мм)</label>
+                            <input type="text" id="dlina_posle_reducirov_mm" name="dlina_posle_reducirov_mm" placeholder="хз откуда брать">
+                        </div>
+                        <h2>Коэффициент редуцирования</h2>
+                        <!-- берем из таблицы k_reduc_3 -->
+                        <div>
+                            <label for="koefficient_reducirovaniya">Коэффициент редуцирования</label>
+                            <input type="text" id="koefficient_reducirovaniya" name="koefficient_reducirovaniya">
+                        </div>
+                        <!-- пишем сами или берется непойми откуда -->
+                        <div>
+                            <label for="field16">Диаметр оправки (мм)</label>
+                            <input type="text" id="diametr_opravki_mm" name="diametr_opravki_mm" placeholder="хз откуда брать">
+                        </div>
+                        
+                        <div>
+                            <label for="field17">Резьба /диаметр контактного стержня (мм)</label>
+                            <input type="text" id="rezba_diametr_kontaktnogo_sterzhnya_mm" name="rezba_diametr_kontaktnogo_sterzhnya_mm" placeholder="хз откуда брать">
+                        </div>
+                        <div>
+                            <label for="field18">Длина контактного стержня (мм)</label>
+                            <input type="text" id="dlina_kontaktnogo_sterzhnya_mm" name="dlina_kontaktnogo_sterzhnya_mm" placeholder="хз откуда брать">
+                        </div>
+                        <div>
+                            <label for="field19">Материал контактного стержня</label>
+                            <input type="text" id="material_kontaktnogo_sterzhnya" name="material_kontaktnogo_sterzhnya" placeholder="хз откуда брать">
+                        </div>
+
+                <button type="submit">отправить</button>
+            </form>
+            
+        </body>
+    
+    <script>
+          
+
+          $(document).ready(function() {
+    // Функция для инициализации автозаполнения для таблицы zagotovka_2
+    function initializeAutocompleteZagotovka2(data) {
+        // Создаем массивы вариантов для каждого поля формы
+        var materialOptions = data.reduce(function(acc, item) {
+            if (acc.indexOf(item.material.toString()) === -1) {
+                acc.push(item.material.toString());
+            }
+            return acc;
+        }, []);
+        var diametr_zagotovkiOptions = data.reduce(function(acc, item) {
+            if (acc.indexOf(item.diametr_zagotovki.toString()) === -1) {
+                acc.push(item.diametr_zagotovki.toString());
+            }
+            return acc;
+        }, []);
+        var tolshina_stenkiOptions = data.reduce(function(acc, item) {
+            if (acc.indexOf(item.tolshina_stenki.toString()) === -1) {
+                acc.push(item.tolshina_stenki.toString());
+            }
+            return acc;
+        }, []);
+        
+        // Инициализируем автозаполнение для каждого поля формы
+        $('#material').autocomplete({
+            source: materialOptions,
+            minLength: 0 // Задаем минимальную длину в 0
+        });
+        $('#diametr_zagotovki').autocomplete({
+            source: diametr_zagotovkiOptions,
+            minLength: 0 // Задаем минимальную длину в 0
+        });
+        $('#tolshina_stenki').autocomplete({
+            source: tolshina_stenkiOptions,
+            minLength: 0 // Задаем минимальную длину в 0
+        });
+        
+        // При фокусе на поле формы с классом .autocomplete запускаем автозаполнение
+        $('#material').focus(function () {
+            $(this).autocomplete('search', $(this).val());
+        });
+        $('#diametr_zagotovki').focus(function () {
+            $(this).autocomplete('search', $(this).val());
+        });
+        $('#tolshina_stenki').focus(function () {
+            $(this).autocomplete('search', $(this).val());
+        });
+        
+        // Обработчик событийна изменение значений для всех полей формы
+        $('input').on('autocompletechange', function() {
+            var selectedValues = {
+                material: $('#material').val(),
+                diametr_zagotovki: $('#diametr_zagotovki').val(),
+                tolshina_stenki: $('#tolshina_stenki').val()
+            };
+
+            var filteredData = data.filter(function(item) {
+                return Object.keys(selectedValues).every(function(key) {
+                    return selectedValues[key] === "" || item[key].toString() === selectedValues[key];
+                });
+            });
+
+            // Обновляем варианты автозаполнения для каждого поля формы
+            var materialOptions = filteredData.reduce(function(acc, item) {
+                if (acc.indexOf(item.material.toString()) ===-1) {
+                    acc.push(item.material.toString());
+                }
+                return acc;
+            }, []);
+            var diametr_zagotovkiOptions = filteredData.reduce(function(acc, item) {
+                if (acc.indexOf(item.diametr_zagotovki.toString()) === -1) {
+                    acc.push(item.diametr_zagotovki.toString());
+                }
+                return acc;
+            }, []);
+            var tolshina_stenkiOptions = filteredData.reduce(function(acc, item) {
+                if (acc.indexOf(item.tolshina_stenki.toString()) === -1) {
+                    acc.push(item.tолщина_stenki.toString());
+                }
+                return acc;
+            }, []);
+
+            // Обновляем варианты автозаполнения для каждого поля формы
+            $('#material').autocomplete('option', 'source', materialOptions);
+            $('#diametr_zagotovki').autocomplete('option', 'source', diametr_zagotovkiOptions);
+            $('#tolshina_stenki').autocomplete('option', 'source', tolshina_stenkiOptions);
+        });
+    }
+    
+    // Функция для инициализации автозаполнения для таблицы k_sterzhen_zadelka_5
+    function initializeAutocompleteKSterzhenZadelka5(data) {
+        // Создаем массив вариантов для поля формы bukvennoe_oboznachenie
+        var bukvennoe_oboznachenieOptions = data.reduce(function(acc, item) {
+            if (acc.indexOf(item.bukvennoe_oboznachenie.toString()) === -1) {
+                acc.push(item.bukvennoe_oboznachenie.toString());
+            }
+            return acc;
+        }, []);
+
+        // Инициализируем автозаполнение для поля формы bukvennoe_oboznachenie
+        $('#bukvennoe_oboznachenie').autocomplete({
+            source: bukvennoe_oboznachenieOptions,
+            minLength: 0 // Задаем минимальную длину в 0
+        });
+        
+        // При фокусе на поле формы с классом .autocomplete запускаем автозаполнение
+        $('#bukvennoe_oboznachenie').focus(function () {
+            $(this).autocomplete('search', $(this).val());
+        });
+        
+        // Обработчик событий на изменение значений для поля формы bukvennoe_oboznachenie
+        $('#bukvennoe_oboznachenie').on('autocompletechange', function() {
+            var selectedValues = {
+                bukvennoe_oboznachenie: $('#bukvennoe_oboznachenie').val(),
+            };
+            
+            var filteredData = data.filter(function(item) {
+                return Object.keys(selectedValues).every(function(key) {
+                    return selectedValues[key] === "" || item[key].toString() === selectedValues[key];
+                });
+            });
+            
+            // Обновляем варианты автозаполнения для поля формы bukvennoe_oboznachenie
+            var bukvennoe_oboznachenieOptions = filteredData.reduce(function(acc, item) {
+                if (acc.indexOf(item.bukvennoe_oboznachenie.toString()) === -1) {
+                    acc.push(item.bukvennoe_oboznachenie.toString());
+                }
+                return acc;
+            }, []);
+            
+            $('#bukvennoe_oboznachenie').autocomplete('option', 'source', bukvennoe_oboznachenieOptions);
+        });
+    }
+
+    // Загружаем данные из таблицы zagotovka_2
+    $.getJSON('zagotovka_2.json', function(data) {
+        // Инициализируем автозаполнение для полей формы, используя данные из таблицы zagotovka_2
+        initializeAutocompleteZagotovka2(data);
+    });
+
+    // Загружаем данные из таблицы k_sterzhen_zadelka_5
+    $.getJSON('k_sterzhen_zadelka_5.json', function(data) {
+        // Инициализируем автозаполнение для поля формы bukvennoe_oboznachenie, используя данные из таблицы k_sterzhen_zadelka_5
+        initializeAutocompleteKSterzhenZadelka5(data);
+    });
+});
+
+    </script>
+    
+</html>
+

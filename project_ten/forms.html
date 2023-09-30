@@ -1,0 +1,178 @@
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+        
+        /* Общий стиль для всего документа */
+        body {
+            /* Задаем шрифт для всего документа */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Стиль для формы */
+        #myForm {
+            /* Задаем ширину формы */
+            width: 300px;
+            /* Центрируем форму по горизонтали */
+            margin: 0 auto;
+            /* Добавляем отступ внутри формы */
+            padding: 20px;
+            /* Задаем границу формы */
+            border: 1px solid #ccc;
+            /* Задаем скругление углов */
+            border-radius: 4px;
+            /* Задаем фоновый цвет формы */
+            background-color: #f8f8f8;
+        }
+
+        /* Стиль для заголовка формы */
+        #myForm h1 {
+            /* Центрируем текст заголовка */
+            text-align: center;
+            /* Задаем цвет текста заголовка */
+            color: #333;
+        }
+
+        /* Стиль для каждого блока с полем ввода */
+        #myForm div {
+            /* Задаем отступ снизу для каждого блока */
+            margin-bottom: 10px;
+        }
+
+        /* Стиль для меток полей ввода */
+        #myForm label {
+            /* Показываем метку как блочный элемент */
+            display: block;
+            /* Задаем отступ снизу для метки */
+            margin-bottom: 5px;
+        }
+
+        /* Стиль для полей ввода */
+        #myForm input[type="text"] {
+            /* Задаем ширину поля ввода */
+            width: 100%;
+            /* Задаем отступ внутри поля ввода */
+            padding: 5px;
+            /* Задаем границу поля ввода */
+            border: 1px solid #ccc;
+            /* Задаем скругление углов поля ввода */
+            border-radius: 4px;
+        }
+
+        /* Стиль для кнопки отправки */
+        #myForm button {
+            /* Показываем кнопку как блочный элемент */
+            display: block;
+            /* Задаем ширину кнопки */
+            width: 100%;
+            /* Задаем отступ внутри кнопки */
+            padding: 10px;
+            /* Задаем отступ сверху для кнопки */
+            margin-top: 10px;
+            /* Задаем цвет текста кнопки */
+            color: #fff;
+            /* Задаем фоновый цвет кнопки */
+            background-color: #4CAF50;
+            /* Убираем границу у кнопки */
+            border: none;
+            /* Задаем скругление углов кнопки */
+            border-radius: 4px;
+            /* Задаем курсор в виде руки при наведении на кнопку */
+            cursor: pointer;
+        }
+
+        #myForm button:hover {
+        /* Задаем фоновый цвет кнопки при наведении */
+        background-color: #45a049;
+        }
+    </style> 
+    </style>
+</head>
+<body>
+    <form id="myForm">
+        <h1>Header</h1>
+        <div>
+            <label for="field1">Строковое поле</label>
+            <input type="text" id="field1" name="field1">
+        </div>
+        <div>
+            <label for="field2">Строковое поле</label>
+            <input type="text" id="field2" name="field2">
+        </div>
+        <button type="submit">send</button>
+    </form>
+
+    <script>
+        $(document).ready(function() { // функция которая начинает работать только после полной загрузки документа
+    
+            var allData;
+            var shellDiameterValues = [];
+    
+            // Получаем полные списки значений для каждого из полей при загрузке страницы
+            $.ajax({
+                url: 'http://127.0.0.1:3000/diam_truby_1',
+                method: 'GET',
+                success: function(data) {
+                    allData = data;
+                    shellDiameterValues = [...new Set(data.map(function(item) {
+                        return item.shell_diameter.toString();
+                    }))];
+    
+                    // Устанавливаем начальные значения для поля с автозаполнением
+                    $('#field1').autocomplete({
+                        source: shellDiameterValues,
+                        minLength: 0 // минимальное количество символов для отображения подсказок
+                    }).focus(function() {
+                        $(this).autocomplete('search', $(this).val());
+                    });
+    
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+    
+            $('#field1').on('autocompletechange', function() {
+                var selectedValue = $(this).val();
+                var associatedValues = allData.filter(item => item.shell_diameter == selectedValue).map(item => item.diameter_of_the_ten_billet.toString());
+    
+                $('#field2').autocomplete({
+                    source: associatedValues,
+                    minLength: 0 // минимальное количество символов для отображения подсказок
+                }).focus(function() {
+                    $(this).autocomplete('search', $(this).val());
+                });
+            });
+    
+            $('#myForm').on('submit', function(event) {
+            event.preventDefault();
+
+            // получаем выбранные пользователем значения
+            var shellDiameter = $('#field1').val();
+            var diameterOfTheTenBillet = $('#field2').val();
+
+            // находим соответствующий объект данных
+            var correspondingData = allData.find(item => item.shell_diameter == shellDiameter && item.diameter_of_the_ten_billet == diameterOfTheTenBillet);
+
+            // отправляем запрос на сервер
+            $.ajax({
+                url: 'http://127.0.0.1:3000/script-test', // замените на ваш URL
+                method: 'POST',
+                data: { diam_truby_1_id: correspondingData.id_diam_truby },
+                success: function(data) {
+                    alert("Data saved successfully.");
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+
+    </script>
+    
+</body>
+</html>
